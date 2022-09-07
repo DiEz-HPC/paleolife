@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" type="image/png" href="{{ asset('build/images/Logofeuille.png') }}"/>
-		<title>
-			{% block title %}PaleoLife
-			{% endblock %}
-		</title>
-		{{ encore_entry_link_tags('app') }}
-		{% block stylesheets %}{% endblock %}
-		{{ encore_entry_script_tags('app') }}
-		{% block javascripts %}{% endblock %}
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{{ asset('build/images/Logofeuille.png') }}"/>
+    {{ sonata_seo_metadatas() }}
+    <title>
+        {% block title %}
+            PaleoLife
+        {% endblock %}
+    </title>
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}{% endblock %}
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}{% endblock %}
+</head>
 
-	<body class="d-flex flex-column bg-light">
-		<header>
-			{% block navbar %}{% endblock %}
-			{% block flashes %}
-				{% include 'component/_flashes.html.twig'%}
-			{% endblock %}
-		</header>
-		<div class="container-fluid main-container"> {% block body %}{% endblock %}
-			</div>
-			{% block footer %}
-				{% include 'component/_footer.html.twig'%}
-			{% endblock %}
-		</body>
-	</html>
+<body class="d-flex flex-column bg-light">
+<header>
+    {% block navbar %}{% endblock %}
+    {% block flashes %}
+        {% include 'component/_flashes.html.twig' %}
+    {% endblock %}
+</header>
+<div class="container-fluid main-container">
+    {% block body %}
+    {% endblock %}
+</div>
+{% block footer %}
+    {% include 'component/_footer.html.twig' %}
+{% endblock %}
+</body>
+</html>
