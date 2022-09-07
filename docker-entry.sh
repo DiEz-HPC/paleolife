@@ -3,6 +3,8 @@ set -e
 
 php composer.phar update
 
+npm run build
+
 ## Symfony configuration
 if [ ${APP_ENV} != "prod" ]; then
   php bin/console doctrine:database:drop --force --quiet --if-exists --no-interaction
