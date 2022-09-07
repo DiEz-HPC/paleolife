@@ -55,7 +55,7 @@ RUN npm install npm@latest -g
 RUN npm install yarn@latest -g
 RUN node -v
 RUN npm -v
-
+RUN npm run build
 EXPOSE 80
 
 COPY docker-entry.sh /etc/entrypoint.sh
