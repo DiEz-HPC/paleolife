@@ -48,14 +48,13 @@ COPY --from=vendor /app/vendor /var/www/vendor
 # Prep App's Frontend CSS & JS now
 # so some symfony UX dependencies can access to vendor
 #
+
 RUN apk add nodejs
 RUN apk add npm
 RUN npm install npm@latest -g
 RUN npm install yarn@latest -g
 RUN node -v
 RUN npm -v
-RUN yarn install
-RUN yarn run build
 
 EXPOSE 80
 
