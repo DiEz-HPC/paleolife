@@ -32,7 +32,7 @@ class UserFixtures extends Fixture
         );
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
-            'admin'
+            'Rapace12'
         );
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
