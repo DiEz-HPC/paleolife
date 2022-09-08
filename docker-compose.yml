@@ -16,13 +16,17 @@ services:
         volumes:
             - ./db-data:/var/lib/mysql
         environment:
-            MYSQL_ROOT_PASSWORD: password
+            MYSQL_ROOT_PASSWORD: "password"
         ports:
             - "5432:3306"
         # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
         # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
-
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
 ###> symfony/mailer ###
     mailer:
         image: schickling/mailcatcher

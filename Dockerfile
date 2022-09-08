@@ -1,3 +1,21 @@
+ARG NODE_VERSION=14
+
+# node "stage"
+FROM node:${NODE_VERSION}-alpine AS symfony_assets_builder
+
+WORKDIR /srv/app
+
+RUN mkdir public
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
+
+COPY assets assets/
+COPY webpack.config.js ./
+
+RUN yarn build
+
 #
 # Prep App's PHP Dependencies
 #
@@ -43,19 +61,18 @@ WORKDIR /var/www
 
 COPY . /var/www/
 COPY --from=vendor /app/vendor /var/www/vendor
-
+COPY --from=symfony_assets_builder /srv/app/public/build /var/www/public/build
 #
 # Prep App's Frontend CSS & JS now
 # so some symfony UX dependencies can access to vendor
 #
+
 RUN apk add nodejs
 RUN apk add npm
 RUN npm install npm@latest -g
 RUN npm install yarn@latest -g
 RUN node -v
 RUN npm -v
-RUN yarn install
-RUN yarn run build
 
 EXPOSE 80
 
